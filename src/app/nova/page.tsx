@@ -39,53 +39,65 @@ export default function NovaQueryPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Cadastrar nova query</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-slate-900 mb-1">
+        Cadastrar nova query
+      </h1>
+      <p className="text-slate-500 mb-8">
+        Aberto para todos — salva direto no banco, sem aprovação.
+      </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4 max-w-xl">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-5 max-w-xl rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+      >
         <div>
-          <label className="block text-sm font-medium mb-1">
-            Título <span className="text-red-600">*</span>
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            Título <span className="text-red-500">*</span>
           </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full rounded border px-3 py-2 text-sm"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
-            Descrição <span className="text-red-600">*</span>
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            Descrição <span className="text-red-500">*</span>
           </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
             rows={3}
-            className="w-full rounded border px-3 py-2 text-sm"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
-            SQL completo <span className="text-red-600">*</span>
+          <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            SQL completo <span className="text-red-500">*</span>
           </label>
           <textarea
             value={sql}
             onChange={(e) => setSql(e.target.value)}
             required
             rows={10}
-            className="w-full rounded border px-3 py-2 text-sm font-mono"
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm font-mono text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
 
-        {error && <p className="text-red-600 text-sm">{error}</p>}
+        {error && (
+          <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            {error}
+          </div>
+        )}
 
         <button
           type="submit"
           disabled={saving}
-          className="rounded bg-gray-900 text-white px-4 py-2 text-sm hover:bg-gray-700 disabled:opacity-50"
+          className="rounded-md bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-700 disabled:opacity-50 transition-colors"
         >
           {saving ? "Salvando..." : "Salvar query"}
         </button>
