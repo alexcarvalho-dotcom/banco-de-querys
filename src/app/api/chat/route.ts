@@ -81,8 +81,15 @@ Pedido do usuário: "${message}"
 Querys candidatas encontradas no banco:
 ${catalog}`;
 
-  const result = await model.generateContent(prompt);
-  const reply = result.response.text();
-
-  return NextResponse.json({ reply, matches });
+  try {
+    const result = await model.generateContent(prompt);
+    const reply = result.response.text();
+    return NextResponse.json({ reply, matches });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Erro desconhecido.";
+    return NextResponse.json(
+      { error: `Erro ao consultar a IA: ${message}` },
+      { status: 500 }
+    );
+  }
 }
