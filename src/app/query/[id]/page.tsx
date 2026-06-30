@@ -24,7 +24,10 @@ export default async function QueryPage({
 
   return (
     <div>
-      <Link href="/" className="text-sm text-blue-600 hover:underline">
+      <Link
+        href="/"
+        className="text-sm font-medium text-slate-500 hover:text-slate-900"
+      >
         ← Voltar ao índice
       </Link>
       <QueryDetail query={query} />
